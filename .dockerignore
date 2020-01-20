@@ -1,0 +1,15 @@
+# Ignore the log files, but not the directory
+log/*
+
+# Ignore the Build directory
+build/
+
+# Ignore Git
+.git
+
+# Ignore Dockerfiles
+*Dockerfile*
+*docker-compose*
+
+# Ignore Node Files
+node_modules

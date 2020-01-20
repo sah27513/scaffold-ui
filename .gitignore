@@ -1,0 +1,11 @@
+# Ignore the Node Modules
+node_modules/
+
+# Ignore the log files, but not the directory
+log/*
+
+# Ignore the Build directory
+build/
+
+# Ignore Analzyer Stats
+stats.json
