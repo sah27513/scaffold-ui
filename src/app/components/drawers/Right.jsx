@@ -12,13 +12,12 @@ export const RightDrawer = ({ drawers, ...props }) => {
   return (
     <Drawer
       className={clsx(classes.rightDrawer, {
-        [classes.rightDrawerOpen]: drawers.right.open,
-        [classes.rightDrawerClose]: !drawers.right.open
+        [classes.rightDrawerOpen]: drawers.right.open
       })}
       classes={{
         paper: clsx({
-          [classes.rightDrawerOpen]: drawers.right.open,
-          [classes.rightDrawerClose]: !drawers.right.open
+          [classes.rightDrawerOpen]: drawers.left.open,
+          [classes.navHeight]: process.env.SANDBOX
         })
       }}
       variant="persistent"

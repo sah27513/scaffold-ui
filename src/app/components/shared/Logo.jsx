@@ -14,7 +14,7 @@ export default props => {
   return (
     <Link className={classes.logo} href="#/" underline="none">
       <Typography className={clsx(classes.label, { [classes.publicLabel]: !props.isAuth })} variant="h6" color="primary">
-        Scaffold
+        CMMI Centralized Data Exchange (CDX)
       </Typography>
     </Link>
   );

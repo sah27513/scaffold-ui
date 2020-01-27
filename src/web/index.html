@@ -13,7 +13,7 @@
     <link rel="manifest" href="manifest.webapp" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
 
-    <title>TechLess -- Application Development</title>
+    <title>CDX</title>
   </head>
   <body>
     <!--[if lt IE 9]>
@@ -23,7 +23,10 @@
       </p>
     <![endif]-->
     <div id="react-devtools-root"></div>
-    <div id="root"></div>
+    <div style="height: 100vh;" id="root"></div>
+    <div style="display:none;" id="token">{{ token }}</div>
+    <div style="display:none;" id="oauth">{{ oauth }}</div>
+    <div style="display:none;" id="uid" />
     <noscript>
       <h1>You must enable javascript to view this page.</h1>
     </noscript>

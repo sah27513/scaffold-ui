@@ -1,11 +1,9 @@
 import React from 'react';
-import clsx from 'clsx';
 import { Tabs, Tab } from '@material-ui/core';
 import { useStyles } from 'app/styles/components/Tabs';
-import { Home, MenuBook as Docs } from '@material-ui/icons';
 
 export const NavTab = ({ classes, icon: Icon, ...props }) => (
-  <Tab label={props.label} icon={<Icon />} classes={{ root: classes.root, wrapper: classes.wrapper }} />
+  <Tab label={props.label} classes={{ root: classes.root, wrapper: classes.wrapper }} {...props} />
 );
 
 /**
@@ -17,16 +15,20 @@ export const NavTabs = props => {
   const classes = useStyles();
 
   return (
-    <Tabs
-      value={0}
-      indicatorColor="primary"
-      aria-label="navigation tabs"
-      classes={{
-        indicator: classes.tabIndicator
-      }}
-    >
-      <NavTab label="Home" icon={Home} classes={classes} />
-      <NavTab label="Docs" icon={Docs} classes={classes} />
-    </Tabs>
+    <React.Fragment>
+      <Tabs
+        className={classes.tabs}
+        value={props.driveTabs.value}
+        indicatorColor="primary"
+        aria-label="navigation tabs"
+        classes={{
+          indicator: classes.tabIndicator
+        }}
+      >
+        <NavTab label="Drives" classes={classes} onClick={() => props.changeTab(0)} />
+        <NavTab label="Smart Folders" classes={classes} onClick={() => props.changeTab(1)} />
+      </Tabs>
+      {props.children}
+    </React.Fragment>
   );
 };

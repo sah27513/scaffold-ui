@@ -8,8 +8,7 @@ import { connect } from 'react-redux';
 import { PrivateRoute, PublicRoute } from 'app/components/routes';
 
 // Dispatchers
-import { toggleDrawer, toggleMenu, toggleTheme } from 'app/store/shared';
-import { login, logout } from 'app/store/auth/epic';
+import * as dispatchers from 'app/store/dispatchers';
 
 // Application Screens
 const Login = Loadable(() => import('app/screens/Login'));
@@ -25,7 +24,8 @@ export const AppRouter = props => {
       <Router>
         <Switch>
           <PublicRoute exact path="/" component={Login} {...props} />
-          <PrivateRoute exact strict path="/home" component={Dashboard} {...props} />
+          <PrivateRoute exact strict path="/MyDrive" component={Dashboard} {...props} />
+          <PrivateRoute exact strict path="/:drive" component={Dashboard} {...props} />
         </Switch>
       </Router>
     </ThemeProvider>
@@ -34,16 +34,25 @@ export const AppRouter = props => {
 
 const state = current => ({
   // Auth State
+  loading: current.auth.loading,
   isAuth: current.auth.isAuth,
   user: current.auth.user,
+  drives: current.auth.drives,
 
   // Shared State
   theme: current.shared.theme,
   menus: current.shared.menus,
   drawers: current.shared.drawers,
-  notifications: current.shared.notifications
+  driveTabs: current.shared.tabs,
+  drivePanel: current.shared.drivePanel,
+  notifications: current.shared.notifications,
+  help: current.shared.help,
+
+  // Item State
+  fetching: current.item.loading,
+  items: current.item.list,
+  files: current.item.files,
+  folders: current.item.folders
 });
 
-const dispatch = { toggleDrawer, toggleMenu, toggleTheme, logout, login };
-
-export default connect(state, dispatch)(AppRouter);
+export default connect(state, dispatchers)(AppRouter);

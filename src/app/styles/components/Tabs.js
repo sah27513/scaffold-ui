@@ -1,13 +1,27 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, darken } from '@material-ui/core/styles';
 import { menuButton } from 'app/styles/shared';
 
 // Export the Use Styles function
 export const useStyles = makeStyles(theme => ({
   root: {
-    ...menuButton(theme),
-    minHeight: 'auto',
-    minWidth: 120
+    textTransform: 'none',
+    minWidth: 72,
+    flex: 1,
+    fontWeight: theme.typography.fontWeightBold,
+    '&:hover': {
+      color: '#40a9ff',
+      opacity: 1
+    },
+    '&$selected': {
+      color: '#1890ff',
+      fontWeight: theme.typography.fontWeightMedium
+    },
+    '&:focus': {
+      color: '#40a9ff'
+    }
   },
+  selected: {},
+
   wrapper: {
     '& > svg': {
       marginRight: 10,
@@ -16,6 +30,9 @@ export const useStyles = makeStyles(theme => ({
     color: theme.palette.primary.main,
     display: 'flex',
     flexDirection: 'row'
+  },
+  tabs: {
+    backgroundColor: theme.palette.background.default
   },
   tabIndicator: {
     width: 120

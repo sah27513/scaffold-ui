@@ -11,13 +11,15 @@ const commonConfig = require('./webpack.common.js');
 
 const ENV = 'development';
 
+const host = '127.0.0.1';
+
 module.exports = options =>
   webpackMerge(commonConfig({ env: ENV }), {
     devtool: 'cheap-module-source-map', // https://reactjs.org/docs/cross-origin-errors.html
     mode: ENV,
     entry: ['react-hot-loader/patch', './src/app/index.jsx'],
     output: {
-      path: path.resolve(__dirname, '..', 'build'),
+      path: path.resolve(__dirname, '..', '..', 'ui-server', 'build'),
       filename: 'app/[name].bundle.js',
       chunkFilename: 'app/[id].chunk.js'
     },
@@ -30,10 +32,25 @@ module.exports = options =>
       contentBase: './build',
       proxy: [
         {
-          context: ['/api', '/auth'],
-          target: 'http://127.0.0.1:8080',
+          context: ['/cdx', '/logout'],
+          target: `http://${host}:3000/`,
           secure: false
-          // headers: { host: 'localhost:9000' }
+        },
+        {
+          context: ['/file'],
+          target: `http://${host}:9001/api/v1/`,
+          secure: false,
+          proxyTimeout: 10 * 60 * 1000
+        },
+        {
+          context: ['/folder'],
+          target: `http://${host}:9002/api/v1/`,
+          secure: false
+        },
+        {
+          context: ['/user'],
+          target: `http://${host}:9005/api/v1/`,
+          secure: false
         }
       ],
       watchOptions: {

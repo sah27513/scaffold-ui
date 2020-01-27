@@ -19,7 +19,7 @@ export const useStyles = makeStyles(theme => ({
     color: theme.palette.primary.contrastText
   },
   container: {
-    height: `calc(100% - 18px)`
+    height: `calc(100% - 64px)`
   },
   cardListContainer: {
     marginBottom: 10

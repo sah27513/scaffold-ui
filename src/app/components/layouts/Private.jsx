@@ -7,9 +7,11 @@ import { CssBaseline } from '@material-ui/core';
 import { LeftDrawer, RightDrawer } from 'app/components/drawers';
 import { PrivateAppBar as AppBar } from 'app/components/shared';
 import { useStyles } from 'app/styles/Router';
-import { NotificationsList } from 'app/components/lists/Notifications';
 import { Loading } from 'app/components/shared/Loadable';
 import Loadable from '@loadable/component';
+import { Banner } from 'app/components/shared/Banner';
+import { Notifications } from 'app/components/drawers/Notifications';
+import { Help } from 'app/components/drawers/Help';
 
 // Menus
 const FullScreen = Loadable(() => import('app/components/dialogs/FullScreen'));
@@ -31,11 +33,12 @@ export const PrivateLayout = ({ Screen, ...props }) => {
   };
 
   // Set the Drawer toggle only for notifications
-  const handleDrawerOpen = () => {
-    if (open && Component === NotificationsList) {
-      props.toggleDrawer('right', { open: false, Component: Loading });
+  const handleDrawerOpen = component => {
+    const NewComponent = component === 'help' ? Help : Notifications;
+    if (!open || (open && Component !== NewComponent)) {
+      props.toggleDrawer('right', { open: true, Component: NewComponent });
     } else {
-      props.toggleDrawer('right', { open: true, Component: NotificationsList });
+      props.toggleDrawer('right', { open: false, Component: Loading });
     }
   };
 
@@ -54,6 +57,7 @@ export const PrivateLayout = ({ Screen, ...props }) => {
     <div className={classes.root}>
       <CssBaseline />
       {/* Top Level */}
+      {process.env.SANDBOX && <Banner {...props} />}
       <AppBar
         handleListKeyDown={handleListKeyDown}
         handleDrawerOpen={handleDrawerOpen}
@@ -69,7 +73,8 @@ export const PrivateLayout = ({ Screen, ...props }) => {
       <main
         className={clsx(classes.content, {
           [classes.contentShiftLeft]: props.drawers.left.open,
-          [classes.contentShiftRight]: props.drawers.right.open
+          [classes.contentShiftRight]: props.drawers.right.open,
+          [classes.contentShiftSandbox]: process.env.SANDBOX
         })}
       >
         <Screen handleListKeyDown={handleListKeyDown} handleMenuOpen={handleMenuOpen} {...props} />

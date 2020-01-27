@@ -1,6 +1,8 @@
 export const drawerWidth = 240;
 
 export const SHARED_ACTIONS = {
+  CHANGE_TAB: 'CHANGE_TAB',
+  EXPAND_DRIVE: 'EXPAND_DRIVE',
   MENU_TOGGLE: 'MENU_TOGGLE',
   DRAWER_TOGGLE: 'DRAWER_TOGGLE',
   SEARCH: 'SEARCH',
@@ -17,6 +19,15 @@ export const AUTH_ACTIONS = {
   LOGIN_REJECTED: 'LOGIN_REJECTED'
 };
 
-export const PROJECT_ACTIONS = {
-  SET_PROJECT: 'SET_PROJECT'
+export const ITEM_ACTIONS = {
+  GET_ITEMS: 'GET_ITEMS',
+  GET_ITEMS_COMPLETE: 'GET_ITEMS_COMPLETE',
+  GET_ITEMS_REJECTED: 'GET_ITEMS_REJECTED'
 };
+
+export const HELP = [
+  {
+    title: 'Uploading Large Files (>20GB)',
+    description: 'Get help uploading files that are too big for the browser to handle'
+  }
+];

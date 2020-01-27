@@ -47,7 +47,7 @@ const common = {
   palette: {
     tonalOffset: 0.2,
     contrastThreshold: 3,
-    common: { black: '#000', white: '#fff' },
+    common: { black: '#000', white: '#fff', accent: '#5E92AB', shade: '#2B3247', success: '#3c9568', warning: '#b98530' },
     error: {
       light: '#e57373',
       main: '#f44336',
@@ -85,17 +85,17 @@ const light = {
     tonalOffset: 0.2,
     contrastThreshold: 3,
     secondary: {
-      main: '#80CBC4',
-      light: '#99d5cf',
-      dark: '#598e89',
+      light: '#fffe50',
+      main: '#f0cb02',
+      dark: '#b99b00',
       contrastText: '#000'
     },
     background: { default: '#fff', paper: '#FBFBFB', light: '#EAEAEA' },
     type: 'light',
     primary: {
-      main: '#033e56',
-      light: '#356477',
-      dark: '#022b3c',
+      light: '#4f7ecc',
+      main: '#01529b',
+      dark: '#002b6c',
       contrastText: '#fff'
     }
   }

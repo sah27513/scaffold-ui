@@ -1,15 +1,17 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { Banner } from 'app/components/shared/Banner';
 
 export const PublicRoute = ({ component: Screen, ...props }) => {
   // Create the Navigation Closure
   const nav = navProps =>
     !props.isAuth ? (
-      <main>
+      <React.Fragment>
+        <Banner {...props} />
         <Screen {...props} />
-      </main>
+      </React.Fragment>
     ) : (
-      <Redirect to={`/${props.organization.name}`} />
+      <Redirect to={'/MyDrive'} />
     );
 
   // Return the Modified route

@@ -5,8 +5,48 @@ import { leftDrawerWidth, rightDrawerWidth, spacer, menuButton, hide, appBarHeig
 export const useStyles = makeStyles(theme => ({
   hide,
   spacer,
+  rightListRoot: {
+    padding: '0 !important',
+    backgroundColor: theme.palette.background.paper
+  },
+  listIcon: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: `0 ${theme.spacing(1)}px !important`
+  },
+  inline: {
+    display: 'inline'
+  },
   menuButton: menuButton(theme),
   dialog: { opacity: 0.4 },
+  navHeight: {
+    height: `calc(100% - 100px) !important`
+  },
+  navRoot: {
+    minWidth: theme.spacing(4)
+  },
+  listRoot: {
+    padding: '0 !important'
+  },
+  listItem: {
+    borderBottom: `1px solid lightgrey`
+  },
+  listItemButtons: {
+    margin: `${theme.spacing(1)}px !important`
+  },
+  listItemRoot: {
+    padding: '0 !important',
+    textOverflow: 'wrap'
+  },
+  listItemDescription: {
+    whiteSpace: 'pre-wrap'
+  },
+  drawerLabel: {
+    margin: theme.spacing(1),
+    flex: 1
+  },
+
   rightDrawer: {
     backgroundColor: theme.palette.background.light,
     width: rightDrawerWidth,
@@ -17,7 +57,7 @@ export const useStyles = makeStyles(theme => ({
     marginTop: 0
   },
   rightDrawerOpen: {
-    paddingTop: appBarHeight,
+    top: 'auto',
     backgroundColor: theme.palette.background.light,
     width: rightDrawerWidth,
     transition: theme.transitions.create('width', {
@@ -40,6 +80,7 @@ export const useStyles = makeStyles(theme => ({
     whiteSpace: 'nowrap'
   },
   leftDrawerOpen: {
+    top: 'auto',
     backgroundColor: theme.palette.background.light,
     width: leftDrawerWidth,
     transition: theme.transitions.create('width', {
@@ -57,8 +98,7 @@ export const useStyles = makeStyles(theme => ({
   },
   toolbar: {
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'end',
     ...theme.mixins.toolbar
   },
   link: {

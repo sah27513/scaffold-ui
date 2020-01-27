@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Grid,
+  Radio,
   Paper,
   TextField,
   InputAdornment,
@@ -10,14 +11,16 @@ import {
   Checkbox,
   Button,
   Link,
-  Container
+  Container,
+  CircularProgress
 } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import FormBase, { renderTextField } from 'app/components/forms/Base';
 import { Field } from 'redux-form';
 import { Lock, AccountCircle, VpnKey as Key } from '@material-ui/icons';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { useStyles } from 'app/styles/components/AuthMenu';
+import { Logo } from 'app/components/shared/Banner';
+import clsx from 'clsx';
 
 const validate = values => {
   const errors = {};
@@ -27,9 +30,9 @@ const validate = values => {
       errors[field] = 'Required';
     }
   });
-  if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
-  }
+  // if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+  //   errors.email = 'Invalid email address';
+  // }
   return errors;
 };
 
@@ -48,83 +51,86 @@ function Copyright() {
   );
 }
 
+export const LoadingComponent = props => <CircularProgress color="secondary" />;
+
 export const AuthForm = props => {
-  const { pristine, submitting, login } = props;
+  const { pristine, submitting, loading, login } = props;
   const classes = useStyles();
 
   const handleSubmit = values => {
-    // e.persist();
-    // e.preventDefault();
     login(values);
   };
 
   return (
-    <div className={classes.paper}>
-      <Avatar className={classes.avatar}>
-        <LockOutlinedIcon />
-      </Avatar>
-      <Typography component="h1" variant="h5">
-        Sign in
-      </Typography>
-      <Form name="Login" className={classes.form} onSubmit={handleSubmit}>
-        <Field
-          name="email"
-          component={renderTextField}
-          label="Email"
-          variant="outlined"
-          required
-          id="email"
-          autoComplete="email"
-          fullWidth
-          className={classes.margin}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <AccountCircle />
-              </InputAdornment>
-            )
-          }}
-        />
-        <Field
-          variant="outlined"
-          component={renderTextField}
-          required
-          fullWidth
-          name="password"
-          label="Password"
-          type="password"
-          id="password"
-          autoComplete="current-password"
-          className={classes.margin}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Key />
-              </InputAdornment>
-            )
-          }}
-        />
-        <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
-        <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-          Sign In
-        </Button>
-        <Grid container>
-          <Grid item xs>
-            <Link href="#" variant="body2">
-              Forgot password?
-            </Link>
-          </Grid>
-          <Grid item>
-            <Link href="#" variant="body2">
-              {"Don't have an account? Sign Up"}
-            </Link>
-          </Grid>
-        </Grid>
-        <Box mt={5}>
-          <Copyright />
-        </Box>
-      </Form>
-    </div>
+    <Grid container justify="center" direction="column" alignItems="center" className={classes.root} component="main">
+      <Paper className={classes.paper}>
+        <div className={classes.formContainer}>
+          {loading && (
+            <Grid container justify="center">
+              <LoadingComponent />
+            </Grid>
+          )}
+          <Logo />
+          <Form name="Login" className={classes.form} onSubmit={handleSubmit}>
+            <Field
+              disabled={loading}
+              name="email"
+              component={renderTextField}
+              label="Email"
+              variant="outlined"
+              required
+              id="email"
+              autoComplete="email"
+              fullWidth
+              className={clsx(classes.margin, { [classes.formField]: true })}
+            />
+            <Field
+              disabled={loading}
+              variant="outlined"
+              component={renderTextField}
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              className={clsx(classes.margin, { [classes.formField]: true })}
+            />
+            <FormControlLabel
+              value="end"
+              control={<Checkbox checked disabled classes={{ root: classes.radioLabel }} />}
+              label="Agree to our Terms & Conditions"
+              labelPlacement="end"
+              classes={{ label: classes.radioLabel }}
+            />
+            <Button disabled={loading} type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+              Login
+            </Button>
+            <Typography variant="subtitle1" classes={{ root: classes.forgot }}>
+              Forgot your{' '}
+              {
+                <Link underline="always" color="inherit">
+                  User ID
+                </Link>
+              }{' '}
+              or your{' '}
+              {
+                <Link underline="always" color="inherit">
+                  Password?
+                </Link>
+              }
+            </Typography>
+          </Form>
+        </div>
+      </Paper>
+      <Paper className={classes.footer}>
+        <div className={classes.footerButton}>
+          <Button disabled={loading} type="submit" fullWidth variant="contained" color="primary" className={classes.newRegistration}>
+            New User Registration
+          </Button>
+        </div>
+      </Paper>
+    </Grid>
   );
 };
 

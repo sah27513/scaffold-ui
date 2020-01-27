@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 import { useStyles } from 'app/styles/components/Nav';
 
 import { ListItem, List } from '@material-ui/core';
@@ -12,7 +13,7 @@ export default props => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={clsx(classes.root, {})}>
       <List component="nav" aria-label="main organizations" classes={{ root: classes.listRoot }}>
         {children}
       </List>

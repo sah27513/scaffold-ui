@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar as MAppBar, Toolbar, Badge, IconButton, Avatar } from '@material-ui/core';
+import { Tooltip, AppBar, Toolbar, Badge, IconButton, Avatar } from '@material-ui/core';
 import { Notifications as NotificationsIcon, AccountCircle, HelpOutline } from '@material-ui/icons';
 
 // Local Dependencies
@@ -20,7 +20,6 @@ export const PrivateAppBar = props => {
   // Add the JSS Classes
   const classes = useStyles();
   const { user } = props;
-  const initials = `${user.firstName.charAt(0).toUpperCase()}${user.lastName.charAt(0).toUpperCase()}`;
 
   // Get the Count of notifications
   const notificationCount = props.notifications.length;
@@ -28,33 +27,32 @@ export const PrivateAppBar = props => {
 
   return (
     <div className={classes.root}>
-      <MAppBar position="fixed" className={classes.privateAppBar}>
+      <AppBar position="relative" className={classes.privateAppBar}>
         <Toolbar variant="dense">
           <Logo aria-label="open drawer" />
           <Search {...props} />
-          <IconButton className={classes.menuButton} aria-label="help" color="inherit">
-            <Badge color="secondary">
-              <HelpOutline />
-            </Badge>
-          </IconButton>
-          <IconButton className={classes.menuButton} aria-label={label} color="inherit" onClick={props.handleDrawerOpen}>
-            <Badge badgeContent={notificationCount} color="secondary">
-              <NotificationsIcon />
-            </Badge>
+          <IconButton className={classes.menuButton} aria-label="help" color="inherit" onClick={() => props.handleDrawerOpen('help')}>
+            <Tooltip placement="bottom" title="Help" aria-label="open help drawer">
+              <Badge color="primary">
+                <HelpOutline color="primary" />
+              </Badge>
+            </Tooltip>
           </IconButton>
           <IconButton
             className={classes.menuButton}
-            edge="end"
-            aria-label="account of current user"
-            aria-haspopup="true"
+            aria-label={label}
             color="inherit"
-            onClick={() => props.handleMenuOpen('profile')}
+            onClick={() => props.handleDrawerOpen('notifications')}
           >
-            <Avatar className={classes.purple}>{initials}</Avatar>
+            <Tooltip placement="bottom" title="Notifications" aria-label="open notifications drawer">
+              <Badge badgeContent={notificationCount} color="primary">
+                <NotificationsIcon color="primary" />
+              </Badge>
+            </Tooltip>
           </IconButton>
           <div className={classes.menu} ref={props.menuRef} id="app-bar" />
         </Toolbar>
-      </MAppBar>
+      </AppBar>
 
       {/* Hidden Components */}
       <AuthMenu anchorRef={props.menuRef} toggleOpen={props.handleMenuOpen} handleListKeyDown={props.handleListKeyDown} {...props} />

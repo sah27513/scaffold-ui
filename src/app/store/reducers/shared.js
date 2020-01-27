@@ -1,19 +1,25 @@
-import { SHARED_ACTIONS } from 'app/config/constants';
+import { SHARED_ACTIONS, HELP } from 'app/config/constants';
 import { theme } from 'app/config/theme';
-import { validateAuth } from 'app/store/auth/action';
-// import { Loading } from 'app/components/shared';
+import { validateAuth } from 'app/store/actions';
 
 // Extract Constants
-const { DRAWER_TOGGLE, CHANGE_THEME, MENU_TOGGLE } = SHARED_ACTIONS;
+const { EXPAND_DRIVE, CHANGE_TAB, DRAWER_TOGGLE, CHANGE_THEME, MENU_TOGGLE } = SHARED_ACTIONS;
 
 // Create the Initial State
 const initialState = {
   theme: validateAuth().theme ? theme(validateAuth().theme) : theme('light'),
   notifications: [],
+  help: HELP,
   drawers: {
     fullscreen: { open: false, component: {} },
     left: { visible: true, open: true },
     right: { open: false }
+  },
+  tabs: {
+    value: 0
+  },
+  drivePanel: {
+    current: { folderName: 'MyDrive' }
   },
   menus: {
     profile: { open: false },
@@ -43,6 +49,16 @@ export const shared = (state = initialState, action) => {
       return {
         ...state,
         theme: theme(action.payload)
+      };
+    case CHANGE_TAB:
+      return {
+        ...state,
+        tabs: action.payload
+      };
+    case EXPAND_DRIVE:
+      return {
+        ...state,
+        drivePanel: action.payload
       };
     default:
       return state;

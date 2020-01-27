@@ -5,6 +5,7 @@ export const useStyles = makeStyles(theme => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
+    border: `1px solid  ${theme.palette.primary.main}`,
     backgroundColor: fade(theme.palette.common.white, 0.15),
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.25)
@@ -23,10 +24,11 @@ export const useStyles = makeStyles(theme => ({
     pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    color: theme.palette.primary.main
   },
   inputRoot: {
-    color: 'inherit'
+    color: theme.palette.primary.main
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 7),

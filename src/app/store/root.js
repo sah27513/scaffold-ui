@@ -4,17 +4,16 @@ import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
 // Reducers
-import { auth, loginEpic } from 'app/store/auth';
-import { shared, searchEpic } from 'app/store/shared';
-import { project } from 'app/store/project';
+import { auth, shared, item } from 'app/store/reducers';
+import { searchEpic, loginEpic, getItemsEpic } from 'app/store/epics';
 
 // Combine the Reducers to create the Store
-export const rootEpic = combineEpics(searchEpic);
+export const rootEpic = combineEpics(searchEpic, loginEpic, getItemsEpic);
 
 // Combine the Reducers to create the Store
 export const rootReducer = combineReducers({
   form: formReducer,
-  project,
+  item,
   shared,
   auth
 });

@@ -2,7 +2,6 @@
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MergeJsonWebpackPlugin = require('merge-jsons-webpack-plugin');
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
@@ -27,10 +26,6 @@ module.exports = options => ({
         loader: 'babel-loader',
         exclude: /node_modules/,
         include: /src/
-        // query: {
-        //   cacheDirectory: true,
-        //   plugins: ['react-hot-loader/babel']
-        // }
       }
     ]
   },
@@ -39,17 +34,12 @@ module.exports = options => ({
   },
   plugins: [
     new CleanWebpackPlugin(),
-    // new webpack.DefinePlugin({
-    //   'process.env': {
-    //     NODE_ENV: `'${options.env}'`,
-    //     BUILD_TIMESTAMP: `'${new Date().getTime()}'`,
-    //     VERSION: '1.0.0',
-    //     DEBUG_INFO_ENABLED: options.env === 'development',
-    //     SERVER_API_URL: `''`
-    //   }
-    // }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        SANDBOX: true
+      }
+    }),
     new CopyWebpackPlugin([
-      { from: './src/web/content/', to: 'content' },
       { from: './src/web/favicon.ico', to: 'favicon.ico' },
       { from: './src/web/manifest.webapp', to: 'manifest.webapp' },
       { from: './src/web/robots.txt', to: 'robots.txt' }
@@ -59,10 +49,5 @@ module.exports = options => ({
       chunksSortMode: 'dependency',
       inject: 'body'
     })
-    // new MergeJsonWebpackPlugin({
-    //   output: {
-    //     groupBy: [{ pattern: './src/i18n/en/*.json', fileName: './i18n/en.json' }]
-    //   }
-    // })
   ]
 });
