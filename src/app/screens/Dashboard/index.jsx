@@ -4,6 +4,7 @@ import { useStyles } from 'app/styles/screens/Dashboard';
 import { NavCrumbs } from 'app/components/Shared/Breadcrumbs';
 import { Grid, Typography } from '@material-ui/core';
 import { Circular } from 'app/components/progress/Circular';
+import { CloudUpload } from '@material-ui/icons';
 
 // Dispatchers
 
@@ -27,11 +28,8 @@ export const HomeScreen = props => {
 
   // Get the User Data
   useEffect(() => {
-    const parts = window.location.hash.split('/').filter(part => part !== '#');
-    console.log(parts);
-    props.requestItems(parts[0]);
+    props.requestItems(props.drivePanel.current.folderName);
   }, []);
-  console.log(props.items);
 
   return (
     <div className={classes.dashboard}>
@@ -52,7 +50,10 @@ export const HomeScreen = props => {
                 </Grid>
                 <Grid item xs={12}>
                   <Typography align="center" color="textPrimary">
-                    Upload a file or create a file to get started
+                    Upload a file or folder to get started
+                  </Typography>
+                  <Typography align="center" color="textPrimary">
+                    <CloudUpload fontSize="large" />
                   </Typography>
                 </Grid>
               </Grid>

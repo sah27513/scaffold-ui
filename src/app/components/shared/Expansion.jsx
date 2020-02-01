@@ -8,13 +8,15 @@ export const Expansion = props => {
   const classes = useStyles();
 
   const handleClick = event => {
-    props.label === props.drivePanel.current.folderName ? props.setExpanded() : props.setExpanded(props.drive);
+    props.label === props.drivePanel.expanded.folderName
+      ? props.setExpanded({ current: props.drive, expanded: {} })
+      : props.setExpanded({ current: props.drive, expanded: props.drive });
   };
 
   return (
     <ExpansionPanel
       square
-      expanded={props.drivePanel.current.folderName === props.label}
+      expanded={props.drivePanel.expanded.folderName === props.label}
       classes={{
         root: clsx(classes.root, {
           [classes.selected]: props.selected

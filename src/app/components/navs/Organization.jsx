@@ -62,7 +62,7 @@ export const OrgNav = props => {
                 {props.folders.map(folder => (
                   <ListItem
                     selected={folder.folderName === props.drivePanel.current.folderName}
-                    key={drive.folderName}
+                    key={folder.folderName}
                     classes={{ root: classes.listItemRoot, selected: classes.selected }}
                   >
                     {/* <Tree {...props} /> */}

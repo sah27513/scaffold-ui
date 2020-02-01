@@ -1,5 +1,3 @@
-import { validateAuth } from 'app/store/actions';
-
 // Create the Initial State
 const initialState = {
   loading: false,

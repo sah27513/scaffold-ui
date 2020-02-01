@@ -26,7 +26,7 @@ export const changeTab = tab => ({
 
 export const setExpanded = drive => ({
   type: EXPAND_DRIVE,
-  payload: { current: drive }
+  payload: drive
 });
 
 export const search = data => ({

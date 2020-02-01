@@ -3,7 +3,10 @@ import { margin, spacer } from 'app/styles/shared';
 
 export const useStyles = makeStyles(theme => ({
   spacer,
-  margin: { margin: theme.spacing(1) },
+  margin: { margin: `0 ${theme.spacing(1)}px` },
+  buttonGroup: {
+    display: 'flex'
+  },
   root: {
     justifyContent: 'center',
     backgroundColor: 'lightgrey',

@@ -19,7 +19,8 @@ const initialState = {
     value: 0
   },
   drivePanel: {
-    current: { folderName: 'MyDrive' }
+    current: { folderName: 'MyDrive' },
+    expanded: { folderName: 'MyDrive' }
   },
   menus: {
     profile: { open: false },
