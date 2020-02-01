@@ -1,6 +1,6 @@
 import { SHARED_ACTIONS, HELP } from 'app/config/constants';
 import { theme } from 'app/config/theme';
-import { validateAuth } from 'app/store/actions';
+import { getDrive, validateAuth } from 'app/store/actions';
 
 // Extract Constants
 const { EXPAND_DRIVE, CHANGE_TAB, DRAWER_TOGGLE, CHANGE_THEME, MENU_TOGGLE } = SHARED_ACTIONS;
@@ -18,10 +18,7 @@ const initialState = {
   tabs: {
     value: 0
   },
-  drivePanel: {
-    current: { folderName: 'MyDrive' },
-    expanded: { folderName: 'MyDrive' }
-  },
+  drivePanel: getDrive(),
   menus: {
     profile: { open: false },
     search: { open: false }

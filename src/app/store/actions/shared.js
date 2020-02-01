@@ -4,18 +4,18 @@ export const search = data => {
   return {};
 };
 
-export const getDrive = driveName => {
+export const getDrive = () => {
   // Get The name of the Current Drive
   const [name] = window.location.hash.split('/').filter(part => part !== '#');
 
   // Get the list of Drives
   const { drives } = validateAuth();
-  console.log(drives);
-  console.log(name);
+  const driveName = name.replace('%20', ' ');
+  console.log(driveName);
 
   // Reduce the list to the current drive
   const currentDrive = drives
-    .filter(drive => drive.folderName === name)
+    .filter(drive => drive.folderName === driveName)
     .reduce(
       (drive, item) => ({
         ...drive,
