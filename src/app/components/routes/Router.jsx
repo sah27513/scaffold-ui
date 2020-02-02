@@ -13,6 +13,8 @@ import * as dispatchers from 'app/store/dispatchers';
 // Application Screens
 const Login = Loadable(() => import('app/screens/Login'));
 const Dashboard = Loadable(() => import('app/screens/Dashboard'));
+const Settings = Loadable(() => import('app/screens/Settings'));
+const Trash = Loadable(() => import('app/screens/Trash'));
 
 /**
  * Application Router
@@ -25,6 +27,8 @@ export const AppRouter = props => {
         <Switch>
           <PublicRoute exact path="/" component={Login} {...props} />
           <PrivateRoute exact strict path="/MyDrive" component={Dashboard} {...props} />
+          <PrivateRoute exact strict path="/settings" component={Settings} {...props} />
+          <PrivateRoute exact strict path="/trash" component={Trash} {...props} />
           <PrivateRoute exact strict path="/:drive" component={Dashboard} {...props} />
         </Switch>
       </Router>

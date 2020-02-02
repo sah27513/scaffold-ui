@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon, Settings } from '@material-ui/icons';
+import { RestoreFromTrash as Trash, Settings } from '@material-ui/icons';
 import { ListItemIcon, ListItemText, List, ListItem, Button, Typography, Link, Drawer, Divider, Badge } from '@material-ui/core';
 import { useStyles } from 'app/styles/components/Drawer';
 import { OrgNav, ProjectNav } from 'app/components/navs';
@@ -36,12 +36,22 @@ export const LeftDrawer = props => {
         </Button>
       </div> */}
       <List classes={{ root: classes.listRoot }}>
-        <ListItem button>
-          <ListItemIcon classes={{ root: classes.navRoot }}>
-            <Settings />
-          </ListItemIcon>
-          <ListItemText primary="Settings" />
-        </ListItem>
+        <Link underline="none" href={`#/trash`}>
+          <ListItem button>
+            <ListItemIcon classes={{ root: classes.navRoot }}>
+              <Trash />
+            </ListItemIcon>
+            <ListItemText primary="Trash" />
+          </ListItem>
+        </Link>
+        <Link underline="none" href={`#/settings`}>
+          <ListItem button>
+            <ListItemIcon classes={{ root: classes.navRoot }}>
+              <Settings />
+            </ListItemIcon>
+            <ListItemText primary="Settings" />
+          </ListItem>
+        </Link>
       </List>
     </Drawer>
   );
