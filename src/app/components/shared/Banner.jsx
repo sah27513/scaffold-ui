@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStyles } from 'app/styles/components/Banner';
 
-export const Logo = props => {
+export const CMSLogo = props => {
   const classes = useStyles();
 
   return (
@@ -21,7 +21,7 @@ export const Banner = props => {
   return (
     <div className={classes.cmsNavbar}>
       <div className={classes.left}>
-        <Logo />
+        <CMSLogo />
       </div>
       {props.isAuth && (
         <React.Fragment>

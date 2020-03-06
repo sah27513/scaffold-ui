@@ -1,17 +1,14 @@
 import React from 'react';
 import clsx from 'clsx';
+import Loadable from '@loadable/component';
 
 import { CssBaseline } from '@material-ui/core';
 
 // Local Depdencies
-import { LeftDrawer, RightDrawer } from 'app/components/drawers';
-import { PrivateAppBar as AppBar } from 'app/components/shared';
 import { useStyles } from 'app/styles/Router';
-import { Loading } from 'app/components/shared/Loadable';
-import Loadable from '@loadable/component';
-import { Banner } from 'app/components/shared/Banner';
-import { Notifications } from 'app/components/drawers/Notifications';
-import { Help } from 'app/components/drawers/Help';
+import { AppBar, Banner, Loading } from 'app/components/shared';
+import { LeftDrawer, RightDrawer, Help, Notifications } from 'app/components/drawers';
+import { setDrawer } from 'app/utils';
 
 // Menus
 const FullScreen = Loadable(() => import('app/components/dialogs/FullScreen'));
@@ -34,11 +31,12 @@ export const PrivateLayout = ({ Screen, ...props }) => {
 
   // Set the Drawer toggle only for notifications
   const handleDrawerOpen = component => {
-    const NewComponent = component === 'help' ? Help : Notifications;
+    const { drawer, NewComponent } = setDrawer(component, { Help, Notifications });
+
     if (!open || (open && Component !== NewComponent)) {
-      props.toggleDrawer('right', { open: true, Component: NewComponent });
+      props.toggleDrawer(drawer, { open: true, Component: NewComponent });
     } else {
-      props.toggleDrawer('right', { open: false, Component: Loading });
+      props.toggleDrawer(drawer, { open: false, Component: Loading });
     }
   };
 

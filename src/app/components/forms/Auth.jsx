@@ -1,25 +1,9 @@
 import React from 'react';
-import {
-  Grid,
-  Radio,
-  Paper,
-  TextField,
-  InputAdornment,
-  Avatar,
-  Typography,
-  FormControlLabel,
-  Checkbox,
-  Button,
-  Link,
-  Container,
-  CircularProgress
-} from '@material-ui/core';
-import Box from '@material-ui/core/Box';
+import { Grid, Paper, Typography, FormControlLabel, Checkbox, Button, Link, CircularProgress } from '@material-ui/core';
 import FormBase, { renderTextField } from 'app/components/forms/Base';
 import { Field } from 'redux-form';
-import { Lock, AccountCircle, VpnKey as Key } from '@material-ui/icons';
 import { useStyles } from 'app/styles/components/AuthMenu';
-import { Logo } from 'app/components/shared/Banner';
+import { CMSLogo } from 'app/components/shared';
 import clsx from 'clsx';
 
 const validate = values => {
@@ -70,7 +54,7 @@ export const AuthForm = props => {
               <LoadingComponent />
             </Grid>
           )}
-          <Logo />
+          <CMSLogo />
           <Form name="Login" className={classes.form} onSubmit={handleSubmit}>
             <Field
               disabled={loading}

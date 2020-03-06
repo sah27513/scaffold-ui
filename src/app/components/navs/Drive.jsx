@@ -9,7 +9,7 @@ import { LinearProgressBar } from 'app/components/progress/Linear';
 import { FolderList } from 'app/components/drives/FolderList';
 import { Add, FilterList } from '@material-ui/icons';
 
-export const OrgNav = props => {
+export const DriveNav = props => {
   const classes = useStyles();
 
   return (

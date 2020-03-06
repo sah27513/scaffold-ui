@@ -15,15 +15,17 @@ export const getDrive = () => {
 
   // Reduce the list to the current drive
   const currentDrive = drives
-    .filter(drive => drive.folderName === driveName)
-    .reduce(
-      (drive, item) => ({
-        ...drive,
-        current: item,
-        expanded: item
-      }),
-      {}
-    );
+    ? drives
+        .filter(drive => drive.folderName === driveName)
+        .reduce(
+          (drive, item) => ({
+            ...drive,
+            current: item,
+            expanded: item
+          }),
+          {}
+        )
+    : {};
 
   // Return the current Drive
   return currentDrive;

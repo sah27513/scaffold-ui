@@ -1,10 +1,9 @@
 import React from 'react';
-import { Grid, List, ListItem, ListItemIcon, ListItemSecondaryAction, Button, Typography, ListItemText, Divider } from '@material-ui/core';
+import { Grid, List, ListItem, Button, ListItemText } from '@material-ui/core';
 import { useStyles } from 'app/styles/components/Drawer';
 
 export const RightList = ({ Icon, iconProps, ...props }) => {
   const classes = useStyles();
-  console.log(props.list);
 
   return (
     <List className={classes.rightListRoot}>

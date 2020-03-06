@@ -1,32 +1,10 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Grow from '@material-ui/core/Grow';
-import Paper from '@material-ui/core/Paper';
-import Popover from '@material-ui/core/Popover';
-import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
-import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { CloudUpload } from '@material-ui/icons';
-
-const options = ['Upload Folder'];
+import { List, ListItem, ListItemText, Paper, Popover, ClickAwayListener, ButtonGroup, Button } from '@material-ui/core';
+import { ArrowDropDown, CloudUpload } from '@material-ui/icons';
 
 export const DropDown = props => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
-
-  const handleClick = () => {
-    console.info(`You clicked ${options[selectedIndex]}`);
-  };
-
-  const handleMenuItemClick = (event, index) => {
-    setSelectedIndex(index);
-    setOpen(false);
-  };
 
   const handleToggle = () => {
     setOpen(prevOpen => !prevOpen);
@@ -61,7 +39,7 @@ export const DropDown = props => {
           aria-haspopup="menu"
           onClick={handleToggle}
         >
-          <ArrowDropDownIcon />
+          <ArrowDropDown />
         </Button>
       </ButtonGroup>
       <Popover

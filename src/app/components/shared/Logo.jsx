@@ -7,7 +7,7 @@ import { useStyles } from 'app/styles/components/Logo';
  * Method to render the Applicatio Nav Bar
  * @param {object} props -- Props Contain User Details for AppBar
  */
-export default props => {
+export const Logo = props => {
   // Add the JSS Classes
   const classes = useStyles();
 

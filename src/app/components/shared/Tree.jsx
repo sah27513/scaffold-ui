@@ -9,7 +9,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Label from '@material-ui/icons/Label';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import InfoIcon from '@material-ui/icons/Info';
-import ForumIcon from '@material-ui/icons/Forum';
+import Folder from '@material-ui/icons/Folder';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
@@ -59,13 +59,13 @@ const useTreeItemStyles = makeStyles(theme => ({
 
 function StyledTreeItem(props) {
   const classes = useTreeItemStyles();
-  const { labelText, labelIcon: LabelIcon, labelInfo, color, bgColor, ...other } = props;
+  const { labelText, labelIcon: Folder, labelInfo, color, bgColor, ...other } = props;
 
   return (
     <TreeItem
       label={
         <div className={classes.labelRoot}>
-          <LabelIcon color="inherit" className={classes.labelIcon} />
+          <Folder color="inherit" className={classes.labelIcon} />
           <Typography variant="body2" className={classes.labelText}>
             {labelText}
           </Typography>
@@ -117,15 +117,15 @@ export const Tree = props => {
       defaultExpandIcon={<ArrowRightIcon />}
       defaultEndIcon={<div style={{ width: 24 }} />}
     >
-      <StyledTreeItem nodeId="1" labelText="All Mail" labelIcon={MailIcon} />
-      <StyledTreeItem nodeId="2" labelText="Trash" labelIcon={DeleteIcon} />
-      <StyledTreeItem nodeId="3" labelText="Categories" labelIcon={Label}>
-        <StyledTreeItem nodeId="5" labelText="Social" labelIcon={SupervisorAccountIcon} labelInfo="90" color="#1a73e8" bgColor="#e8f0fe" />
-        <StyledTreeItem nodeId="6" labelText="Updates" labelIcon={InfoIcon} labelInfo="2,294" color="#e3742f" bgColor="#fcefe3" />
-        <StyledTreeItem nodeId="7" labelText="Forums" labelIcon={ForumIcon} labelInfo="3,566" color="#a250f5" bgColor="#f3e8fd" />
-        <StyledTreeItem nodeId="8" labelText="Promotions" labelIcon={LocalOfferIcon} labelInfo="733" color="#3c8039" bgColor="#e6f4ea" />
+      <StyledTreeItem nodeId="1" labelText="All Mail" labelIcon={Folder} />
+      <StyledTreeItem nodeId="2" labelText="Trash" labelIcon={Folder} />
+      <StyledTreeItem nodeId="3" labelText="Categories" labelIcon={Folder}>
+        <StyledTreeItem nodeId="5" labelText="Social" labelIcon={Folder} labelInfo="90" color="#1a73e8" bgColor="#e8f0fe" />
+        <StyledTreeItem nodeId="6" labelText="Updates" labelIcon={Folder} labelInfo="2,294" color="#e3742f" bgColor="#fcefe3" />
+        <StyledTreeItem nodeId="7" labelText="Forums" labelIcon={Folder} labelInfo="3,566" color="#a250f5" bgColor="#f3e8fd" />
+        <StyledTreeItem nodeId="8" labelText="Promotions" labelIcon={Folder} labelInfo="733" color="#3c8039" bgColor="#e6f4ea" />
       </StyledTreeItem>
-      <StyledTreeItem nodeId="4" labelText="History" labelIcon={Label} />
+      <StyledTreeItem nodeId="4" labelText="History" labelIcon={Folder} />
     </TreeView>
   );
 };

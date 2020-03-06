@@ -8,7 +8,7 @@ import { useStyles } from 'app/styles/components/Search';
  * @param {object} props -- React Props
  * @returns {Component} -- The Global Search Component Instance
  */
-export const GlobalSearch = props => {
+export const Search = props => {
   // Create the JSS Styles
   const classes = useStyles();
 

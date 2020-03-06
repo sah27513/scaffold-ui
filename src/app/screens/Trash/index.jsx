@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useStyles } from 'app/styles/screens/Dashboard';
-import { NavCrumbs } from 'app/components/Shared/Breadcrumbs';
+import { NavCrumbs } from 'app/components/shared/Breadcrumbs';
 import { Grid, Typography } from '@material-ui/core';
 import { Circular } from 'app/components/progress/Circular';
 import { CloudUpload } from '@material-ui/icons';
@@ -28,7 +28,7 @@ export const Trash = props => {
 
   // Get the User Data
   useEffect(() => {
-    props.requestItems(props.drivePanel.current.folderName);
+    // props.requestItems(props.drivePanel.current.folderName);
   }, []);
 
   return (

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { RestoreFromTrash as Trash, Settings } from '@material-ui/icons';
 import { ListItemIcon, ListItemText, List, ListItem, Button, Typography, Link, Drawer, Divider, Badge } from '@material-ui/core';
 import { useStyles } from 'app/styles/components/Drawer';
-import { OrgNav, ProjectNav } from 'app/components/navs';
+import { DriveNav } from 'app/components/navs';
 import { isEmpty } from 'lodash';
 
 export const LeftDrawer = props => {
@@ -27,7 +27,7 @@ export const LeftDrawer = props => {
       }}
       open={drawers.left.open}
     >
-      <OrgNav {...props} />
+      <DriveNav {...props} />
       <div className={classes.spacer} />
       <Divider />
       {/* <div className={classes.toolbar}>
